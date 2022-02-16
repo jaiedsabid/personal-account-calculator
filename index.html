@@ -6,11 +6,27 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Personal Account Calculator</title>
+    <!-- Internal Stylesheet -->
     <link rel="stylesheet" href="./assets/css/style.css">
+    <!-- Tailwind CSS with core plugins -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp"></script>
+    <!-- TailWind CSS Config -->
+    <script>
+        tailwind.config = {
+            content: ['./**/*.{html}'],
+            theme: {
+                extend: {}
+            },
+            plugins: [
+                require('@tailwindcss/forms'),
+            ],
+        }
+    </script>
 </head>
 
 <body>
 
+    <!-- Internal main Script -->
     <script src="./assets/js/index.js"></script>
 </body>
 
