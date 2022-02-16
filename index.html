@@ -119,6 +119,34 @@
                         </h3>
                     </div>
                 </div>
+                <!-- Savings Section -->
+                <div id="savings" class="my-5">
+                    <div class="mt-4 flex flex-row justify-between items-center space-x-2">
+                        <label for="save" class="block text-sm font-medium text-gray-700 mr-3">Save: </label>
+                        <div class="block relative rounded-md shadow-sm">
+                            <input type="text" name="clothes" id="clothes"
+                                class="focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-3 pr-12 sm:text-sm border-gray-300 rounded-md"
+                                placeholder="0">
+                            <div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
+                                <span class="text-gray-500 sm:text-sm"> % </span>
+                            </div>
+                        </div>
+                        <!-- Calculate Savings -->
+                        <div class="flex items-center justify-center">
+                            <button id="calc-savings" type="button"
+                                class="inline-flex items-center px-8 py-2 border border-transparent text-sm font-medium rounded-md text-blue-700 bg-blue-100 hover:bg-blue-200 focus:outline-none">Save</button>
+                        </div>
+                    </div>
+                    <!-- Saving and remaining balance result Section -->
+                    <div id="saving-remaining" class="mt-5">
+                        <h3 class="text-base font-bold text-center leading-7 text-gray-900 sm:text-lg sm:truncate">
+                            Saving Amount: <span id="saving-amount" class="ml-1">0</span>
+                        </h3>
+                        <h3 class="mt-3 text-base font-bold text-center leading-7 text-gray-900 sm:text-lg sm:truncate">
+                            Remaining Balance: <span id="remaining-balance" class="ml-1">0</span>
+                        </h3>
+                    </div>
+                </div>
             </div>
         </div>
     </main>
