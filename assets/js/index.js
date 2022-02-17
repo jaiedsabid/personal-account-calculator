@@ -7,6 +7,7 @@ const percentageInput = document.getElementById('percentage');
 
 /* Error Modal */
 const errorModal = document.getElementById('error-modal');
+const errorModalInner = document.getElementById('error-modal-inner');
 const errorTitle = document.getElementById('error-title');
 const errorMessage = document.getElementById('error-message');
 
@@ -93,8 +94,21 @@ function calculateSavings() {
 function toggleErrorModal() {
     if (errorModal.classList.contains('invisible')) {
         errorModal.classList.remove('invisible');
+        
+        errorModalInner.classList.add('modal-enter-animation');
+        errorModalInner.classList.remove('modal-exit-animation');
+        
+        errorModal.classList.add('modal-overlay-enter-animation');
+        errorModal.classList.remove('modal-overlay-exit-animation');
+        
     } else {
         errorModal.classList.add('invisible');
+        
+        errorModalInner.classList.remove('modal-enter-animation');
+        errorModalInner.classList.add('modal-exit-animation');
+
+        errorModal.classList.remove('modal-overlay-enter-animation');
+        errorModal.classList.add('modal-overlay-exit-animation');
     }
 }
 
