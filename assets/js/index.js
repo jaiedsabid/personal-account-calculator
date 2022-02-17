@@ -1,3 +1,6 @@
+/* Globals */
+let incomeBal = 0;
+
 /* Inputs */
 const incomeInput = document.getElementById('income');
 const foodInput = document.getElementById('food');
@@ -62,7 +65,8 @@ function calculateExpenseAndBalance() {
             toggleErrorModal();
             return;
         }
-    
+        
+        incomeBal = income;
         const result = income - totalExpense;
     
         // Display results.
@@ -91,7 +95,7 @@ function calculateSavings() {
         const currentBalance = parseFloat(balanceDisplay.innerText);
         const percentage = parseFloat(percentageInput.value);
     
-        const savingAmount = currentBalance * (percentage / 100);
+        const savingAmount = incomeBal * (percentage / 100);
         const remainingBalance = currentBalance - savingAmount;
     
         // Check for invalid inputs.
