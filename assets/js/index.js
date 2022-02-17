@@ -215,8 +215,10 @@ function setErrorModalContents(title, message) {
  * @return {void}
 */
 function fixBackgroundImage() {
-    const documentOffsetHeight = document.body.offsetHeight
-    document.getElementById('background').style.height = `${documentOffsetHeight}px`;
+    if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+        const documentOffsetHeight = document.body.offsetHeight
+        document.getElementById('background').style.height = `${documentOffsetHeight}px`;
+    }
 }
 
 /* Event listeners */
