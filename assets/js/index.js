@@ -215,9 +215,13 @@ function setErrorModalContents(title, message) {
  * @return {void}
 */
 function fixBackgroundImage() {
-    if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+    const backgroundImage = document.getElementById('background');
+    
+    if(  window.innerWidth < 768 ) {
         const documentOffsetHeight = document.body.offsetHeight
-        document.getElementById('background').style.height = `${documentOffsetHeight}px`;
+        backgroundImage.style.height = `${documentOffsetHeight}px`;
+    } else {
+        backgroundImage.style.height = '100%';
     }
 }
 
@@ -228,5 +232,9 @@ errorModalCloseBtn.addEventListener('click', toggleErrorModal);
 
 // Fix background image size.
 window.addEventListener('DOMContentLoaded', fixBackgroundImage);
+window.addEventListener('resize', fixBackgroundImage);
 // Remove event listener before unload.
-window.addEventListener('beforeunload', fixBackgroundImage);
+window.addEventListener('beforeunload', () => {
+    window.removeEventListener('DOMContentLoaded', fixBackgroundImage);
+    window.removeEventListener('resize', fixBackgroundImage);
+});
