@@ -29,32 +29,37 @@ const remainingBalanceDisplay = document.getElementById('remaining-balance');
  * @return {void}
 */
 function calculateExpenseAndBalance() {
-    const income = parseFloat(incomeInput.value);
-    const food = parseFloat(foodInput.value);
-    const rent = parseFloat(rentInput.value);
-    const clothes = parseFloat(clothesInput.value);
+    try {
+        const income = parseFloat(incomeInput.value);
+        const food = parseFloat(foodInput.value);
+        const rent = parseFloat(rentInput.value);
+        const clothes = parseFloat(clothesInput.value);
+        
+        const totalExpense = food + rent + clothes;
     
-    const totalExpense = food + rent + clothes;
-
-    // Check for invalid inputs.
-    if ( isNaN(income) || isNaN(food) || isNaN(rent) || isNaN(clothes) ) {
-        setErrorModalContents('Invalid Input', 'Please enter valid numbers.');
+        // Check for invalid inputs.
+        if ( isNaN(income) || isNaN(food) || isNaN(rent) || isNaN(clothes) ) {
+            setErrorModalContents('Invalid Input', 'Please enter valid numbers.');
+            toggleErrorModal();
+            return;
+        }
+    
+        // Check if expenses are larger than income.
+        if ( totalExpense > income ) {
+            setErrorModalContents('Invalid Input', 'Total expenses cannot be larger than income.');
+            toggleErrorModal();
+            return;
+        }
+    
+        const result = income - totalExpense;
+    
+        // Display results.
+        expenseDisplay.innerText = totalExpense?.toFixed(2);
+        balanceDisplay.innerText = result?.toFixed(2);
+    } catch(error) {
+        setErrorModalContents('Error', `${error.message}`);
         toggleErrorModal();
-        return;
     }
-
-    // Check if expenses are larger than income.
-    if ( totalExpense > income ) {
-        setErrorModalContents('Invalid Input', 'Total expenses cannot be larger than income.');
-        toggleErrorModal();
-        return;
-    }
-
-    const result = income - totalExpense;
-
-    // Display results.
-    expenseDisplay.innerText = totalExpense?.toFixed(2);
-    balanceDisplay.innerText = result?.toFixed(2);
 }
 
 /** 
@@ -62,29 +67,34 @@ function calculateExpenseAndBalance() {
  * @return {void}
 */
 function calculateSavings() {
-    const currentBalance = parseFloat(balanceDisplay.innerText);
-    const percentage = parseFloat(percentageInput.value);
-
-    const savingAmount = currentBalance * (percentage / 100);
-    const remainingBalance = currentBalance - savingAmount;
-
-    // Check for invalid inputs.
-    if ( isNaN(percentage) ) {
-        setErrorModalContents('Invalid Input', 'Please enter valid percentage.');
+    try {
+        const currentBalance = parseFloat(balanceDisplay.innerText);
+        const percentage = parseFloat(percentageInput.value);
+    
+        const savingAmount = currentBalance * (percentage / 100);
+        const remainingBalance = currentBalance - savingAmount;
+    
+        // Check for invalid inputs.
+        if ( isNaN(percentage) ) {
+            setErrorModalContents('Invalid Input', 'Please enter valid percentage.');
+            toggleErrorModal();
+            return;
+        }
+    
+        // Check if percentage is larger than 100.
+        if ( savingAmount > currentBalance || percentage > 100.0 ) {
+            setErrorModalContents('Invalid Input', 'Saving amount cannot be larger than current balance.');
+            toggleErrorModal();
+            return;
+        }
+    
+        // Display results.
+        savingAmountDisplay.innerText = savingAmount?.toFixed(2);
+        remainingBalanceDisplay.innerText = remainingBalance?.toFixed(2);
+    } catch(error) {
+        setErrorModalContents('Error', `${error.message}`);
         toggleErrorModal();
-        return;
     }
-
-    // Check if percentage is larger than 100.
-    if ( savingAmount > currentBalance || percentage > 100.0 ) {
-        setErrorModalContents('Invalid Input', 'Saving amount cannot be larger than current balance.');
-        toggleErrorModal();
-        return;
-    }
-
-    // Display results.
-    savingAmountDisplay.innerText = savingAmount?.toFixed(2);
-    remainingBalanceDisplay.innerText = remainingBalance?.toFixed(2);
 }
 
 /** 
