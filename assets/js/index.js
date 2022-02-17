@@ -231,7 +231,10 @@ function setErrorModalContents(title, message) {
 function fixBackgroundImage() {
     const backgroundImage = document.getElementById('background');
 
-    if(  window.innerWidth < 768 ) {
+    if ( window.innerWidth >= 768 && window.innerWidth < 1024 ) {
+        backgroundImage.classList.add('h-[220px]');
+        backgroundImage.style.height = '';
+    } else if(  window.innerWidth < 768 ) {
         const documentOffsetHeight = document.body.offsetHeight
         backgroundImage.style.height = `${documentOffsetHeight}px`;
     } else {
