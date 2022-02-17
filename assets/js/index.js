@@ -52,8 +52,8 @@ function calculateExpenseAndBalance() {
     const result = income - totalExpense;
 
     // Display results.
-    expenseDisplay.innerText = totalExpense;
-    balanceDisplay.innerText = result;
+    expenseDisplay.innerText = totalExpense?.toFixed(2);
+    balanceDisplay.innerText = result?.toFixed(2);
 }
 
 /** 
@@ -82,8 +82,8 @@ function calculateSavings() {
     }
 
     // Display results.
-    savingAmountDisplay.innerText = savingAmount;
-    remainingBalanceDisplay.innerText = remainingBalance;
+    savingAmountDisplay.innerText = savingAmount?.toFixed(2);
+    remainingBalanceDisplay.innerText = remainingBalance?.toFixed(2);
 }
 
 /** 
