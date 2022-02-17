@@ -30,6 +30,10 @@ const remainingBalanceDisplay = document.getElementById('remaining-balance');
 */
 function calculateExpenseAndBalance() {
     try {
+        if ( inititalIncomeExpenseInputCheck() ) {
+            return;
+        }
+
         const income = parseFloat(incomeInput.value);
         const food = parseFloat(foodInput.value);
         const rent = parseFloat(rentInput.value);
@@ -68,6 +72,10 @@ function calculateExpenseAndBalance() {
 */
 function calculateSavings() {
     try {
+        if ( inititalSavingsInputCheck() ) {
+            return;
+        }
+        
         const currentBalance = parseFloat(balanceDisplay.innerText);
         const percentage = parseFloat(percentageInput.value);
     
@@ -95,6 +103,39 @@ function calculateSavings() {
         setErrorModalContents('Error', `${error.message}`);
         toggleErrorModal();
     }
+}
+
+/** 
+ * Show error if any income and expenses inputs are empty.
+ * @return {boolean}
+*/
+function inititalIncomeExpenseInputCheck() {
+    const initialExpenseInputs = [incomeInput.value, foodInput.value, rentInput.value, clothesInput.value];
+    const anyEmptyInput = initialExpenseInputs.some(input => input === '');
+    
+    if (anyEmptyInput) {
+        setErrorModalContents('Error', 'Please enter income and all expense values properly. Don\'t leave any empty.');
+        toggleErrorModal();
+
+        return true;
+    }
+
+    return false;
+}
+
+/** 
+ * Show error if Percentage input is empty.
+ * @return {boolean}
+*/
+function inititalSavingsInputCheck() {
+       if ( percentageInput.value === '' ) {
+        setErrorModalContents('Error', 'Please enter percentage values properly. Don\'t leave it empty.');
+        toggleErrorModal();
+
+        return true;
+    }
+
+    return false;
 }
 
 /** 
