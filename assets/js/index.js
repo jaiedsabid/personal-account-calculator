@@ -31,6 +31,7 @@ function calculateExpenseAndBalance() {
 
     if ( totalExpense > income ) {
         alert('You have spent more than your income!');
+        return;
     }
 
     const result = income - totalExpense;
@@ -49,6 +50,11 @@ function calculateSavings() {
 
     const savingAmount = currentBalance * (percentage / 100);
     const remainingBalance = currentBalance - savingAmount;
+
+    if ( savingAmount > currentBalance ) {
+        alert('Saving amount is larger than current balance!');
+        return;
+    }
 
     savingAmountDisplay.innerText = savingAmount;
     remainingBalanceDisplay.innerText = remainingBalance;
