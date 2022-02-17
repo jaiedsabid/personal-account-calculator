@@ -48,6 +48,13 @@ function calculateExpenseAndBalance() {
             toggleErrorModal();
             return;
         }
+
+        // Check if negative
+        if ( income < 0 || food < 0 || rent < 0 || clothes < 0 ) {
+            setErrorModalContents('Invalid Input', 'Please enter non negative numbers.');
+            toggleErrorModal();
+            return;
+        }
     
         // Check if expenses are larger than income.
         if ( totalExpense > income ) {
@@ -90,6 +97,13 @@ function calculateSavings() {
         // Check for invalid inputs.
         if ( isNaN(percentage) ) {
             setErrorModalContents('Invalid Input', 'Please enter valid percentage.');
+            toggleErrorModal();
+            return;
+        }
+        
+        // Check for negative inputs.
+        if ( percentage < 0 ) {
+            setErrorModalContents('Invalid Input', 'Please enter non negative percentage value.');
             toggleErrorModal();
             return;
         }
@@ -216,7 +230,7 @@ function setErrorModalContents(title, message) {
 */
 function fixBackgroundImage() {
     const backgroundImage = document.getElementById('background');
-    
+
     if(  window.innerWidth < 768 ) {
         const documentOffsetHeight = document.body.offsetHeight
         backgroundImage.style.height = `${documentOffsetHeight}px`;
