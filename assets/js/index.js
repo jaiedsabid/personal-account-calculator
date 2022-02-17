@@ -5,9 +5,15 @@ const rentInput = document.getElementById('rent');
 const clothesInput = document.getElementById('clothes');
 const percentageInput = document.getElementById('percentage');
 
+/* Error Modal */
+const errorModal = document.getElementById('error-modal');
+const errorTitle = document.getElementById('error-title');
+const errorMessage = document.getElementById('error-message');
+
 /* Action buttons */
 const calcExpenseBtn = document.getElementById('calc-expenses');
 const calcSavingsBtn = document.getElementById('calc-savings');
+const errorModalCloseBtn = document.getElementById('error-close');
 
 /* Displays */
 const expenseDisplay = document.getElementById('expense-display');
@@ -29,13 +35,23 @@ function calculateExpenseAndBalance() {
     
     const totalExpense = food + rent + clothes;
 
+    // Check for invalid inputs.
+    if ( isNaN(income) || isNaN(food) || isNaN(rent) || isNaN(clothes) ) {
+        toggleErrorModal();
+        setErrorModalContents('Invalid Input', 'Please enter valid numbers.');
+        return;
+    }
+
+    // Check if expenses are larger than income.
     if ( totalExpense > income ) {
-        alert('You have spent more than your income!');
+        toggleErrorModal();
+        setErrorModalContents('Invalid Input', 'Total expenses cannot be larger than income.');
         return;
     }
 
     const result = income - totalExpense;
 
+    // Display results.
     expenseDisplay.innerText = totalExpense;
     balanceDisplay.innerText = result;
 }
@@ -60,6 +76,28 @@ function calculateSavings() {
     remainingBalanceDisplay.innerText = remainingBalance;
 }
 
+/** 
+ * Toggle error modal.
+ * @return {void}
+*/
+function toggleErrorModal() {
+    if (errorModal.classList.contains('invisible')) {
+        errorModal.classList.remove('invisible');
+    } else {
+        errorModal.classList.add('invisible');
+    }
+}
+
+/** 
+ * Set error modal contents.
+ * @return {void}
+*/
+function setErrorModalContents(title, message) {
+    errorTitle.innerText = title;
+    errorMessage.innerText = message;
+}
+
 /* Event listeners */
 calcExpenseBtn.addEventListener('click', calculateExpenseAndBalance);
 calcSavingsBtn.addEventListener('click', calculateSavings);
+errorModalCloseBtn.addEventListener('click', toggleErrorModal);
