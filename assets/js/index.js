@@ -60,6 +60,9 @@ function calculateExpenseAndBalance() {
         // Display results.
         expenseDisplay.innerText = totalExpense?.toFixed(2);
         balanceDisplay.innerText = result?.toFixed(2);
+        
+        // Reset input fields.
+        resetIncomeExpensesInputFields();
     } catch(error) {
         setErrorModalContents('Error', `${error.message}`);
         toggleErrorModal();
@@ -75,7 +78,7 @@ function calculateSavings() {
         if ( inititalSavingsInputCheck() ) {
             return;
         }
-        
+
         const currentBalance = parseFloat(balanceDisplay.innerText);
         const percentage = parseFloat(percentageInput.value);
     
@@ -99,11 +102,35 @@ function calculateSavings() {
         // Display results.
         savingAmountDisplay.innerText = savingAmount?.toFixed(2);
         remainingBalanceDisplay.innerText = remainingBalance?.toFixed(2);
+        
+        // Reset input fields.
+        resetPercentageInputFields();
     } catch(error) {
         setErrorModalContents('Error', `${error.message}`);
         toggleErrorModal();
     }
 }
+
+/** 
+ * Reset income and expenses input fields.
+ * @return {void}
+*/
+function resetIncomeExpensesInputFields() {
+    incomeInput.value = '';
+    foodInput.value = '';
+    rentInput.value = '';
+    clothesInput.value = '';
+}
+
+/** 
+ * Reset percentage input field.
+ * @return {void}
+*/
+function resetPercentageInputFields() {
+    percentageInput.value = '';
+}
+
+
 
 /** 
  * Show error if any income and expenses inputs are empty.
