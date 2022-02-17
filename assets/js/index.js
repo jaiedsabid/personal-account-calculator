@@ -26,6 +26,7 @@ const remainingBalanceDisplay = document.getElementById('remaining-balance');
 
 /** 
  * Calculate expenses and display expenses and remaining balance.
+ * 
  * @return {void}
 */
 function calculateExpenseAndBalance() {
@@ -71,6 +72,7 @@ function calculateExpenseAndBalance() {
 
 /** 
  * Calculate savings and display Savings amount and remaining balance.
+ * 
  * @return {void}
 */
 function calculateSavings() {
@@ -113,6 +115,7 @@ function calculateSavings() {
 
 /** 
  * Reset income and expenses input fields.
+ * 
  * @return {void}
 */
 function resetIncomeExpensesInputFields() {
@@ -124,6 +127,7 @@ function resetIncomeExpensesInputFields() {
 
 /** 
  * Reset percentage input field.
+ * 
  * @return {void}
 */
 function resetPercentageInputFields() {
@@ -134,6 +138,7 @@ function resetPercentageInputFields() {
 
 /** 
  * Show error if any income and expenses inputs are empty.
+ * 
  * @return {boolean}
 */
 function inititalIncomeExpenseInputCheck() {
@@ -152,6 +157,7 @@ function inititalIncomeExpenseInputCheck() {
 
 /** 
  * Show error if Percentage input is empty.
+ * 
  * @return {boolean}
 */
 function inititalSavingsInputCheck() {
@@ -167,6 +173,7 @@ function inititalSavingsInputCheck() {
 
 /** 
  * Toggle error modal.
+ * 
  * @return {void}
 */
 function toggleErrorModal() {
@@ -192,6 +199,7 @@ function toggleErrorModal() {
 
 /** 
  * Set error modal contents.
+ * 
  * @param {string} title - Error title.
  * @param {string} message - Error message.
  * @return {void}
@@ -201,7 +209,22 @@ function setErrorModalContents(title, message) {
     errorMessage.innerText = message;
 }
 
+/** 
+ * Fix background.
+ * 
+ * @return {void}
+*/
+function fixBackgroundImage() {
+    const documentOffsetHeight = document.body.offsetHeight
+    document.getElementById('background').style.height = `${documentOffsetHeight}px`;
+}
+
 /* Event listeners */
 calcExpenseBtn.addEventListener('click', calculateExpenseAndBalance);
 calcSavingsBtn.addEventListener('click', calculateSavings);
 errorModalCloseBtn.addEventListener('click', toggleErrorModal);
+
+// Fix background image size.
+window.addEventListener('DOMContentLoaded', fixBackgroundImage);
+// Remove event listener before unload.
+window.addEventListener('beforeunload', fixBackgroundImage);
