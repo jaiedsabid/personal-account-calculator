@@ -37,15 +37,15 @@ function calculateExpenseAndBalance() {
 
     // Check for invalid inputs.
     if ( isNaN(income) || isNaN(food) || isNaN(rent) || isNaN(clothes) ) {
-        toggleErrorModal();
         setErrorModalContents('Invalid Input', 'Please enter valid numbers.');
+        toggleErrorModal();
         return;
     }
 
     // Check if expenses are larger than income.
     if ( totalExpense > income ) {
-        toggleErrorModal();
         setErrorModalContents('Invalid Input', 'Total expenses cannot be larger than income.');
+        toggleErrorModal();
         return;
     }
 
@@ -67,11 +67,21 @@ function calculateSavings() {
     const savingAmount = currentBalance * (percentage / 100);
     const remainingBalance = currentBalance - savingAmount;
 
-    if ( savingAmount > currentBalance ) {
-        alert('Saving amount is larger than current balance!');
+    // Check for invalid inputs.
+    if ( isNaN(percentage) ) {
+        setErrorModalContents('Invalid Input', 'Please enter valid percentage.');
+        toggleErrorModal();
         return;
     }
 
+    // Check if percentage is larger than 100.
+    if ( savingAmount > currentBalance || percentage > 100.0 ) {
+        setErrorModalContents('Invalid Input', 'Saving amount cannot be larger than current balance.');
+        toggleErrorModal();
+        return;
+    }
+
+    // Display results.
     savingAmountDisplay.innerText = savingAmount;
     remainingBalanceDisplay.innerText = remainingBalance;
 }
