@@ -25,8 +25,12 @@
     <!-- Main Section -->
     <main class="container mx-auto py-8 flex flex-col justify-center items-center">
         <!-- Page Heading -->
-        <h1 class="text-2xl font-bold leading-7 text-blue-500 sm:text-3xl sm:truncate">Personal Account
-            Calculator <img class="inline-block w-[62px] h-[62px]" src="./assets/svgs/calculator.svg" alt="calculator">
+        <h1 id="page-title"
+            class="text-2xl font-bold leading-7 text-blue-500 sm:text-3xl sm:truncate rounded p-3 sm:p-0">
+            Personal
+            Account
+            Calculator <img id="icon" class="inline-block w-[62px] h-[62px]" src="./assets/svgs/calculator.svg"
+                alt="calculator">
         </h1>
         <!-- Image and Calculator form -->
         <div
@@ -35,7 +39,7 @@
             <div id="background" class="md:static absolute inset-0 -z-10 h-full w-full xl:col-span-2">
             </div>
             <!-- Calculator Form -->
-            <div class="bg-gray-100 p-5 rounded">
+            <div class="bg-gray-100 p-5 rounded sm:shadow-none shadow-2xl">
                 <!-- Income Section -->
                 <div id="income-wrapper" class="mb-2">
                     <h2 class="text-lg font-bold leading-7 text-gray-900 sm:text-2xl sm:truncate">Income</h2>

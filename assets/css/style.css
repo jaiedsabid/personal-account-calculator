@@ -5,6 +5,16 @@
     background-position: center;
 }
 
+@media (max-width: 407.99px) {
+  #page-title {
+    text-align: center;
+  }
+  #icon {
+    display: block;
+    margin: 0 auto;
+  }
+}
+
 /* Chrome, Safari, Edge, Opera */
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
