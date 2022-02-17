@@ -100,6 +100,8 @@ function toggleErrorModal() {
 
 /** 
  * Set error modal contents.
+ * @param {string} title - Error title.
+ * @param {string} message - Error message.
  * @return {void}
 */
 function setErrorModalContents(title, message) {
